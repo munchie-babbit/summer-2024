@@ -15,6 +15,7 @@ function GridItem({ image, title, dates, link }) {
             width={200}
             height={200}
             alt={image ? title : "Coming Soon"}
+            unoptimized
           />
           <div>
             <p style={{ marginBottom: 0 }} className={styles.description}>
@@ -30,6 +31,7 @@ function GridItem({ image, title, dates, link }) {
             width={200}
             height={200}
             alt={image ? title : "Coming Soon"}
+            unoptimized
           />
           <div>
             <p style={{ marginBottom: 0 }} className={styles.description}>
@@ -99,6 +101,7 @@ export default function Home() {
             width={1200}
             height={600}
             alt="Map of the world"
+            unoptimized
           />
         </div>
         <div className={styles.grid}>

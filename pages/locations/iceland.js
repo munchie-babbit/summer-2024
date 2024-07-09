@@ -43,6 +43,7 @@ export default function Home() {
             width={3200}
             height={700}
             alt="Farms in iceland"
+            unoptimized
           />
           <p>
             10 days . 100 things to do. Planned by a guy who only sleeps 5 hours
@@ -58,6 +59,7 @@ export default function Home() {
             width={3000}
             height={800}
             alt="Rainbow road"
+            unoptimized
           />
 
           <p>
@@ -74,6 +76,7 @@ export default function Home() {
             width={1000}
             height={600}
             alt="Elf school"
+            unoptimized
           />
 
           <Image
@@ -81,6 +84,7 @@ export default function Home() {
             width={2000}
             height={500}
             alt="Glacier"
+            unoptimized
           />
 
           <Image
@@ -88,6 +92,7 @@ export default function Home() {
             width={2000}
             height={700}
             alt="Glacier"
+            unoptimized
           />
         </div>
 
