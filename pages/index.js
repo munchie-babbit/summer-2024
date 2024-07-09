@@ -1,73 +1,146 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import localFont from "next/font/local";
+import Image from "next/image";
+import Link from "next/link";
+const cursiveFont = localFont({ src: "./Juliette.otf" });
 
+function GridItem({ image, title, dates, link }) {
+  return (
+    <div className={styles.gridItem}>
+      {link ? (
+        <Link href={"/locations" + link}>
+          <Image
+            src={image ? image : "/img/Placeholder.png"}
+            width={200}
+            height={200}
+            alt={image ? title : "Coming Soon"}
+          />
+          <div>
+            <p style={{ marginBottom: 0 }} className={styles.description}>
+              {title ? title : "coming soon"}
+            </p>
+            <p className={styles.code}>{dates ?? "tbd"}</p>
+          </div>
+        </Link>
+      ) : (
+        <>
+          <Image
+            src={image ? image : "/img/Placeholder.png"}
+            width={200}
+            height={200}
+            alt={image ? title : "Coming Soon"}
+          />
+          <div>
+            <p style={{ marginBottom: 0 }} className={styles.description}>
+              {title ? title : "coming soon"}
+            </p>
+            <p className={styles.code}>{dates ?? "tbd"}</p>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+export function Footer() {
+  return (
+    <footer>
+      <p className={styles.header}>
+        Adventures by{" "}
+        <a href="https://www.estellechung.com/" target="_blank">
+          Estelle.
+        </a>{" "}
+        <br />
+        <span>
+          Made with help from{" "}
+          <a href="https://www.wand.app/" target="_blank">
+            Wand
+          </a>
+        </span>
+        .
+      </p>
+    </footer>
+  );
+}
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Summer 2024</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
+      <main className={cursiveFont.className}>
+        <p style={{ maxWidth: "100vw" }} className={styles.title}>
+          One summer across the world
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <p
+          style={{
+            maxWidth: "36vw",
+            marginTop: "4em",
+            marginBottom: "4em",
+            textAlign: "center",
+          }}
+          className={styles.code}
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
+          In the summer of 2024 I quit my job as a developer and travelled
+          around the world. I visited visited 8 countries in 3 months and
+          documented my adventures through collage + illustration with the help
+          of an AI drawing tool called{" "}
+          <a href="https://www.wand.app/" target="_blank">
+            Wand
+          </a>
+          .
+        </p>
+        <div>
+          <Image
+            src="/img/IMG_0981.PNG"
+            width={1200}
+            height={600}
+            alt="Map of the world"
+          />
+        </div>
+        <div className={styles.grid}>
+          {/* Row */}
+          <GridItem
+            image="/img/Iceland.png"
+            title="iceland"
+            dates="June 13 to June 22"
+            link="/iceland"
+          />
+          <GridItem />
+          <GridItem />
+          {/* Row */}
+          <GridItem />
+          <GridItem />
+          <GridItem />
+          {/* Row */}
+          <GridItem />
+          <GridItem />
+          <GridItem />
+        </div>
+        <Footer />
+      </main>
 
       <style jsx>{`
         main {
-          padding: 5rem 0;
+          max-height: 100vh;
+          overflow-y: auto;
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
+
+          /* Hide scrollbar for WebKit browsers */
+          ::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        /* Hide scrollbar for Firefox */
+        main {
+          scrollbar-width: none;
         }
         footer {
           width: 100%;
@@ -87,39 +160,21 @@ export default function Home() {
           text-decoration: none;
           color: inherit;
         }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
-        }
       `}</style>
 
       <style jsx global>{`
         html,
         body {
+          background-color: #fcf7f0;
+          background-size: 34px 34px;
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzcuNzk1Mjc1NTkwNiIgaGVpZ2h0PSIzNy43OTUyNzU1OTA2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8cGF0aCBkPSJNIDAgMC41IEwgMzcuNzk1Mjc1NTkwNiAwLjUiIHN0cm9rZT0iI2E0YmFkZSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4gPHBhdGggZD0iTTAuNSAwIEwgMC41IDM3Ljc5NTI3NTU5MDYiIHN0cm9rZT0iI2E0YmFkZSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4gPC9zdmc+");
+          background-repeat: repeat;
+          height: 100vh;
+          overflow: hidden;
           padding: 0;
           margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
         * {
